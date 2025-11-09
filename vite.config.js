@@ -6,14 +6,10 @@ import path from 'path';
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [ tailwindcss(),react()],
-  test: {
+   test: {
     globals: true,
     environment: 'jsdom',
-    setupFiles: [],
-    coverage: {
-      provider: 'v8',
-      reporter: ['text', 'json'],
-    },
+    setupFiles: ['./src/tests/setup.js'],
   },
 
 })

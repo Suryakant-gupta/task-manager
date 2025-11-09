@@ -26,16 +26,16 @@ function AppContent() {
 
     if (newTheme === "dark") {
       html.classList.add("dark")
-      html.style.backgroundColor = "#111827"
-      html.style.color = "white"
-      body.style.backgroundColor = "#111827"
-      body.style.color = "white"
+      html.style.backgroundColor = "#0f172a"
+      html.style.color = "#f1f5f9"
+      body.style.backgroundColor = "#0f172a"
+      body.style.color = "#f1f5f9"
     } else {
       html.classList.remove("dark")
-      html.style.backgroundColor = "white"
-      html.style.color = "#111827"
-      body.style.backgroundColor = "white"
-      body.style.color = "#111827"
+      html.style.backgroundColor = "#f8fafc"
+      html.style.color = "#0f172a"
+      body.style.backgroundColor = "#f8fafc"
+      body.style.color = "#0f172a"
     }
     localStorage.setItem("app-theme", newTheme)
   }
@@ -55,16 +55,16 @@ function AppContent() {
 
   return (
     <div
-      className="min-h-screen flex flex-col"
+      className="min-h-screen flex flex-col bg-gray-50 dark:bg-slate-950"
       style={{
-        backgroundColor: theme === "dark" ? "#111827" : "white",
-        color: theme === "dark" ? "white" : "#111827",
+        backgroundColor: theme === "dark" ? "#0f172a" : "#f8fafc",
+        color: theme === "dark" ? "#f1f5f9" : "#0f172a",
         transition: "background-color 0.3s ease, color 0.3s ease",
       }}
     >
       <Header theme={theme} toggleTheme={toggleTheme} />
 
-      <main className="flex-1 max-w-4xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
+      <main className="flex-1 max-w-4xl mx-auto w-full px-4 py-5 sm:py-6">
         <TaskForm showToast={showToast} />
         <Filter filter={filter} setFilter={setFilter} />
         <TaskList filter={filter} showToast={showToast} />
@@ -84,3 +84,4 @@ export default function App() {
     </TaskProvider>
   )
 }
+    

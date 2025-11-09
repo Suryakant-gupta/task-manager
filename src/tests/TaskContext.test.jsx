@@ -7,17 +7,30 @@ describe('TaskContext', () => {
     localStorage.clear();
   });
 
-  it('should add a task', () => {
-    const wrapper = ({ children }) => <TaskProvider>{children}</TaskProvider>;
-    const { result } = renderHook(() => useTaskContext(), { wrapper });
+it('should reorder tasks', () => {
+  const wrapper = ({ children }) => <TaskProvider>{children}</TaskProvider>;
+  const { result } = renderHook(() => useTaskContext(), { wrapper });
 
-    act(() => {
-      result.current.addTask('Test task');
-    });
-
-    expect(result.current.tasks).toHaveLength(1);
-    expect(result.current.tasks[0].title).toBe('Test task');
+  act(() => {
+    result.current.addTask('Task 1');
+    result.current.addTask('Task 2');
+    result.current.addTask('Task 3');
   });
+
+  expect(result.current.tasks).toHaveLength(3);
+  
+  const originalTasks = [...result.current.tasks];
+  const reordered = [originalTasks[2], originalTasks[0], originalTasks[1]];
+
+  act(() => {
+    result.current.reorderTasks(reordered);
+  });
+
+  expect(result.current.tasks).toHaveLength(3);
+  expect(result.current.tasks[0].title).toBe('Task 3');
+  expect(result.current.tasks[1].title).toBe('Task 1');
+  expect(result.current.tasks[2].title).toBe('Task 2');
+});
 
   it('should delete a task', () => {
     const wrapper = ({ children }) => <TaskProvider>{children}</TaskProvider>;

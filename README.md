@@ -26,10 +26,9 @@ npm run dev
 # Build for production
 npm build
 
-# Run tests
-npm test
+
 ```
 
-The app will open at `http://localhost:3000`
+The app will open at `http://localhost:5173`
 
 ## 📁 Project Structure

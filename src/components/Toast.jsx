@@ -16,10 +16,10 @@ const Toast = React.memo(({ message, action, onDismiss }) => {
   }, [action, onDismiss])
 
   return (
-    <div className="toast fixed bottom-4 right-4 left-4 sm:left-auto sm:max-w-sm bg-gray-800 dark:bg-gray-700 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 z-40">
-      <span className="flex-1 text-sm sm:text-base">{message}</span>
+    <div className="toast fixed bottom-3 right-3 left-3 sm:left-auto sm:max-w-xs bg-gray-900 dark:bg-gray-800 text-white px-3 py-2.5 sm:px-4 sm:py-3 rounded-lg shadow-lg flex items-center gap-2 sm:gap-3 z-50">
+      <span className="text-xs sm:text-sm flex-1 min-w-0">{message}</span>
       {action && (
-        <button onClick={handleAction} className="ml-2 font-semibold hover:underline text-sm whitespace-nowrap">
+        <button onClick={handleAction} className="ml-1 sm:ml-2 font-semibold hover:underline text-xs flex-shrink-0">
           {action.action}
         </button>
       )}

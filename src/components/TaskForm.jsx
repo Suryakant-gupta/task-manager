@@ -47,18 +47,17 @@ const TaskForm = React.memo(({ showToast }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-5 sm:p-7 transition-all duration-300 border border-gray-100 dark:border-gray-700"
+      className="mb-4 sm:mb-6 bg-white dark:bg-slate-800 rounded-xl shadow-sm p-3 sm:p-5 transition-all duration-300 border border-gray-200 dark:border-slate-700"
     >
-      <div className="flex flex-col gap-3 sm:gap-4">
-        {/* Input Row */}
-        <div className="flex gap-2 sm:gap-3">
+      <div className="flex flex-col gap-2.5 sm:gap-3">
+        <div className="flex flex-col sm:flex-row gap-2">
           <input
             type="text"
             value={input}
             onChange={handleChange}
             placeholder="What needs to be done?"
-            className={`flex-1 px-4 sm:px-5 py-3.5 sm:py-4 text-base rounded-xl bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 border-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 dark:focus:ring-offset-0 ${
-              error ? "border-red-500" : "border-gray-300 dark:border-gray-600 focus:border-blue-500"
+            className={`flex-1 px-3 py-2 sm:py-2.5 border-2 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 form-input text-sm sm:text-base focus:border-blue-500 transition-colors ${
+              error ? "border-red-500" : "border-gray-300 dark:border-slate-600"
             }`}
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
@@ -69,41 +68,39 @@ const TaskForm = React.memo(({ showToast }) => {
           <button
             type="button"
             onClick={() => setShowAdvanced(!showAdvanced)}
-            className="px-4 sm:px-5 py-3.5 sm:py-4 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-bold rounded-xl transition-all duration-200 text-lg hover:scale-105 active:scale-95 flex-shrink-0 shadow-sm"
+            className="px-3 py-2 sm:py-2.5 bg-gray-200 dark:bg-slate-700 hover:bg-gray-300 dark:hover:bg-slate-600 text-gray-800 dark:text-gray-200 font-semibold rounded-lg transition-colors duration-200 text-sm sm:text-base flex-shrink-0"
             title="Toggle advanced options"
-            aria-label="Toggle advanced options"
           >
             ⚙️
           </button>
         </div>
 
-        {error && (
-          <span className="text-red-500 text-sm font-semibold bg-red-50 dark:bg-red-900/20 px-3 py-2 rounded-lg animate-pulse">
-            {error}
-          </span>
-        )}
+        {error && <span className="text-red-500 text-xs sm:text-sm animate-pulse">{error}</span>}
 
-        {/* Advanced Options */}
         {showAdvanced && (
-          <div className="space-y-4 sm:space-y-5 pt-5 sm:pt-6 border-t-2 border-gray-200 dark:border-gray-700 animate-fadeInTheme">
+          <div className="space-y-2.5 sm:space-y-3 pt-2.5 sm:pt-3 border-t border-gray-200 dark:border-slate-700 animate-fadeInTheme">
             <div>
-              <label className="block text-sm font-bold mb-2.5 text-gray-700 dark:text-gray-300">Description</label>
+              <label className="block text-xs sm:text-sm font-semibold mb-1.5 sm:mb-2 text-gray-700 dark:text-gray-300">
+                Description
+              </label>
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder="Add task details..."
-                className="w-full px-4 sm:px-5 py-3 bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 dark:focus:ring-offset-0 text-base"
-                rows="3"
+                className="w-full px-3 py-2 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 form-input resize-none text-sm"
+                rows="2"
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <div>
-                <label className="block text-sm font-bold mb-2.5 text-gray-700 dark:text-gray-300">Priority</label>
+                <label className="block text-xs sm:text-sm font-semibold mb-1.5 sm:mb-2 text-gray-700 dark:text-gray-300">
+                  Priority
+                </label>
                 <select
                   value={priority}
                   onChange={(e) => setPriority(e.target.value)}
-                  className="w-full px-4 sm:px-5 py-3 bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 dark:focus:ring-offset-0 text-base font-medium"
+                  className="w-full px-3 py-2 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg text-gray-900 dark:text-white form-input text-sm"
                 >
                   <option value="low">🟢 Low</option>
                   <option value="medium">🟡 Medium</option>
@@ -112,11 +109,13 @@ const TaskForm = React.memo(({ showToast }) => {
               </div>
 
               <div>
-                <label className="block text-sm font-bold mb-2.5 text-gray-700 dark:text-gray-300">Category</label>
+                <label className="block text-xs sm:text-sm font-semibold mb-1.5 sm:mb-2 text-gray-700 dark:text-gray-300">
+                  Category
+                </label>
                 <select
                   value={category}
                   onChange={(e) => setCategory(e.target.value)}
-                  className="w-full px-4 sm:px-5 py-3 bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 dark:focus:ring-offset-0 text-base font-medium"
+                  className="w-full px-3 py-2 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg text-gray-900 dark:text-white form-input text-sm"
                 >
                   <option value="general">📋 General</option>
                   <option value="work">💼 Work</option>
@@ -128,12 +127,14 @@ const TaskForm = React.memo(({ showToast }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2.5 text-gray-700 dark:text-gray-300">Due Date</label>
+              <label className="block text-xs sm:text-sm font-semibold mb-1.5 sm:mb-2 text-gray-700 dark:text-gray-300">
+                Due Date
+              </label>
               <input
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="w-full px-4 sm:px-5 py-3 bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 rounded-xl text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 dark:focus:ring-offset-0 text-base"
+                className="w-full px-3 py-2 bg-white dark:bg-slate-700 border border-gray-300 dark:border-slate-600 rounded-lg text-gray-900 dark:text-white form-input text-sm"
               />
             </div>
           </div>
@@ -142,9 +143,9 @@ const TaskForm = React.memo(({ showToast }) => {
 
       <button
         type="submit"
-        className="mt-5 sm:mt-6 w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 text-white font-bold py-3.5 sm:py-4 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl active:scale-95 text-base sm:text-lg"
+        className="mt-3 sm:mt-4 w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 text-white font-bold py-2 sm:py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg active:scale-95 text-sm sm:text-base"
       >
-        ➕ Add Task
+        + Add Task
       </button>
     </form>
   )
