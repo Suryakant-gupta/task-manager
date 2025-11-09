@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* LIGHT THEME (DEFAULT) */
+html {
+  background-color: white;
+  color: #111827;
+}
+
+html body {
+  background-color: white;
+  color: #111827;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* DARK THEME */
+html.dark {
+  background-color: #111827;
+  color: white;
+}
+
+html.dark body {
+  background-color: #111827;
+  color: white;
+}
+
+html.dark {
+  --color-bg: #111827;
+  --color-text: white;
+}
+
+html {
+  --color-bg: white;
+  --color-text: #111827;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.task-enter {
+  animation: slideInDown 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.task-exit {
+  animation: slideOutUp 0.4s ease-in forwards;
+}
+
+.task-update {
+  animation: pulse 0.6s ease-in-out;
+}
+
+.theme-transition {
+  animation: fadeInTheme 0.5s ease-in-out;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes fadeInTheme {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.toast-enter {
+  animation: slideIn 0.3s ease-out;
+}
+
+.toast-exit {
+  animation: slideOut 0.3s ease-in;
+}
+
+.toast {
+  animation: slideIn 0.3s ease-out;
+}
+
+.drag-over {
+  @apply bg-gradient-to-r from-blue-50 to-transparent rounded-lg border-2 border-dashed border-blue-400 dark:from-blue-900/30 dark:border-blue-600;
+}
+
+.task-item-dragging {
+  @apply opacity-50 shadow-lg;
+}
+
+.form-input {
+  @apply transition-all duration-200;
+}
+
+.form-input:focus {
+  @apply ring-2 ring-blue-500 ring-offset-0;
+}
+
+button {
+  @apply transition-all duration-200;
+}
+
+.task-item {
+  @apply transition-all duration-200 hover:shadow-lg;
+}
+
+.skeleton {
+  @apply animate-pulse bg-gray-200 rounded dark:bg-gray-700;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
